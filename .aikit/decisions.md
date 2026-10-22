@@ -16,7 +16,12 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Date**: 2026-10-22
 - **Status**: Accepted
 - **Context**: The project exists to exercise AIKit's UI guard, so unbounded edits would hide scope drift.
-- **Decision**: Commit .aikit/ui.json with surface pp over src/**, 
-pm run build as the fast proof and 
-pm run ui:snapshot as the inventory proof; color and font literals live only in src/theme.css.
-- **Consequences**: UI edits run through ikit ui begin, erify and inish; every interactive control carries data-ui and must keep its inventory line; a style literal outside src/theme.css fails verify.
+- **Decision**: Commit `.aikit/ui.json` with surface `app` over `src/**`, `npm run build` as the fast proof and `npm run ui:snapshot` as the inventory proof; color and font literals live only in `src/theme.css`.
+- **Consequences**: UI edits run through `aikit ui begin`, `verify` and `finish`; every interactive control carries `data-ui` and must keep its inventory line; a style literal outside `src/theme.css` fails verify.
+
+### ADR-002: CI is correct but blocked at the account level
+- **Date**: 2026-10-22
+- **Status**: Accepted (blocked on an external account setting)
+- **Context**: The Verify workflow registered as active, but its first run (`39842053398`) ended in `startup_failure` after 0s with zero jobs and no logs. AIKit recorded the same account-level blocker for private repositories in ADR-042 after a minimal smoke workflow failed identically; inspecting Actions billing needs the `user` OAuth scope, which this project does not widen.
+- **Decision**: Keep `.github/workflows/ci.yml` and run its exact steps locally as the delivery gate. Do not make the private repository public to bypass minute billing without the owner's decision.
+- **Consequences**: The workflow is ready when Actions can start; until then it provides no remote evidence, and `aikit check --strict` plus the npm scripts remain authoritative.

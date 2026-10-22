@@ -1,12 +1,11 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "ui-sandbox-ci",
+    "task_id": "ui-sandbox-ci-blocker",
     "last_phase": "phase 4",
-    "active_phase": 5,
-    "status": "completed",
-    "updated_at": 1792697958.339385,
-    "completed_at": 1792697981.4995177
+    "active_phase": 4,
+    "status": "in_progress",
+    "updated_at": 1792698651.2713547
   },
   "checkpoints": [
     {
@@ -123,6 +122,32 @@
       "status": "completed",
       "timestamp": 1792697981.4995196,
       "timestamp_str": "2026-10-22 22:39:41"
+    },
+    {
+      "task_id": "ui-sandbox-ci-blocker",
+      "phase": "phase 2",
+      "phase_num": 2,
+      "description": "[1/1] Document the account-level GitHub Actions startup failure",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1792698391.7438495,
+      "timestamp_str": "2026-10-22 22:46:31",
+      "impact_assessment": {
+        "why": "The Verify workflow fails in 0s with no jobs, matching AIKit ADR-042.",
+        "benefits": "The repository states the blocker and keeps the local gate authoritative.",
+        "risks": "contract: decisions.md only; dependency: none; concurrency: none; state: ADR-002 appended",
+        "mitigation": "Record the evidence and run aikit check --strict before committing."
+      }
+    },
+    {
+      "task_id": "ui-sandbox-ci-blocker",
+      "phase": "phase 4",
+      "phase_num": 4,
+      "description": "[1/1] ADR-002 records the startup failure and ADR-001 text is repaired; checklists: passed",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1792698651.2713547,
+      "timestamp_str": "2026-10-22 22:50:51"
     }
   ]
 }
