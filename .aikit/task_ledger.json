@@ -1,12 +1,11 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "ui-sandbox-ci-blocker",
+    "task_id": "ui-sandbox-ci-billing",
     "last_phase": "phase 4",
-    "active_phase": 5,
-    "status": "completed",
-    "updated_at": 1792698651.2713547,
-    "completed_at": 1792698658.254487
+    "active_phase": 4,
+    "status": "in_progress",
+    "updated_at": 1792698778.39098
   },
   "checkpoints": [
     {
@@ -158,6 +157,32 @@
       "status": "completed",
       "timestamp": 1792698658.2544885,
       "timestamp_str": "2026-10-22 22:50:58"
+    },
+    {
+      "task_id": "ui-sandbox-ci-billing",
+      "phase": "phase 2",
+      "phase_num": 2,
+      "description": "[1/1] Record the definitive billing lock from the second CI run",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1792698749.6090515,
+      "timestamp_str": "2026-10-22 22:52:29",
+      "impact_assessment": {
+        "why": "Run 39843687036 returned the exact annotation: the account is locked due to a billing issue.",
+        "benefits": "Replaces the startup-failure guess with the actionable cause and keeps the workflow.",
+        "risks": "contract: decisions.md only; dependency: none; concurrency: none; state: ADR-003 appended",
+        "mitigation": "Append the ADR, run aikit check --strict, then publish."
+      }
+    },
+    {
+      "task_id": "ui-sandbox-ci-billing",
+      "phase": "phase 4",
+      "phase_num": 4,
+      "description": "[1/1] ADR-003 records the billing lock; checklists: passed",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1792698778.39098,
+      "timestamp_str": "2026-10-22 22:52:58"
     }
   ]
 }

@@ -25,3 +25,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: The Verify workflow registered as active, but its first run (`39842053398`) ended in `startup_failure` after 0s with zero jobs and no logs. AIKit recorded the same account-level blocker for private repositories in ADR-042 after a minimal smoke workflow failed identically; inspecting Actions billing needs the `user` OAuth scope, which this project does not widen.
 - **Decision**: Keep `.github/workflows/ci.yml` and run its exact steps locally as the delivery gate. Do not make the private repository public to bypass minute billing without the owner's decision.
 - **Consequences**: The workflow is ready when Actions can start; until then it provides no remote evidence, and `aikit check --strict` plus the npm scripts remain authoritative.
+
+### ADR-003: The Actions blocker is a billing lock, not a workflow defect
+- **Date**: 2026-10-22
+- **Status**: Accepted (external account state)
+- **Context**: Run `39843687036` on commit `ea8e2a9` queued, ran for 30s, then failed with the annotation "The job was not started because your account is locked due to a billing issue." This confirms ADR-002's likely cause and rules out the workflow file.
+- **Decision**: Keep the workflow unchanged. Resolve the lock in account billing settings; do not make the private repository public to avoid minute billing without the owner's decision.
+- **Consequences**: No repository change can turn the check green. After billing is restored, rerun the failed jobs; the local strict gate remains the delivery authority until then.
