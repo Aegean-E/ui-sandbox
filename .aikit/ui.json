@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "surfaces": {
+    "app": {
+      "paths": [
+        "src/**"
+      ]
+    }
+  },
+  "protected": [
+    "tests/**",
+    "src/**/*.test.*",
+    "src/**/*.spec.*",
+    "src/**/__tests__/**"
+  ],
+  "commands": {
+    "fast": "npm run build",
+    "snapshot": "npm run ui:snapshot"
+  },
+  "style": {
+    "theme_paths": [
+      "src/theme.css"
+    ]
+  },
+  "limits": {
+    "max_files": 12,
+    "max_lines": 300
+  }
+}
