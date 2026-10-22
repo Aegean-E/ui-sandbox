@@ -1,12 +1,11 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "ui-sandbox-scaffold",
+    "task_id": "ui-sandbox-ci",
     "last_phase": "phase 4",
-    "active_phase": 5,
-    "status": "completed",
-    "updated_at": 1792696198.7572765,
-    "completed_at": 1792696235.7814283
+    "active_phase": 4,
+    "status": "in_progress",
+    "updated_at": 1792697958.339385
   },
   "checkpoints": [
     {
@@ -43,6 +42,77 @@
       "status": "completed",
       "timestamp": 1792696235.781454,
       "timestamp_str": "2026-10-22 22:10:35"
+    },
+    {
+      "task_id": "ui-sandbox-polish",
+      "phase": "phase 2",
+      "phase_num": 2,
+      "description": "[1/2] Polish the surface visuals while preserving every inventory entry",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1792697004.4259398,
+      "timestamp_str": "2026-10-22 22:23:24",
+      "impact_assessment": {
+        "why": "Exercise a real bounded UI change under the committed contract.",
+        "benefits": "A more polished, responsive surface and evidence the UI guard catches scope, snapshot and style drift.",
+        "risks": "contract: surface app stays src/**; dependency: none added; concurrency: none; state: .aikit/ui_task.json records the baseline",
+        "mitigation": "Keep data-ui and data-panel sets unchanged, use theme tokens only, then run npm test, npm run build and aikit ui verify."
+      }
+    },
+    {
+      "task_id": "ui-sandbox-polish",
+      "phase": "phase 3",
+      "phase_num": 3,
+      "description": "[2/2] Visual polish applied in src/App.jsx, src/styles.css and src/theme.css; ui verify passed with 0 strikes; awaiting human review",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1792697351.522311,
+      "timestamp_str": "2026-10-22 22:29:11"
+    },
+    {
+      "task_id": "ui-sandbox-polish",
+      "phase": "phase 3",
+      "phase_num": 3,
+      "description": "Human review declined; the UI task stays open and src/ changes stay uncommitted until a human reviews the running UI",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1792697525.970096,
+      "timestamp_str": "2026-10-22 22:32:05"
+    },
+    {
+      "task_id": "ui-sandbox-polish",
+      "phase": "abandoned",
+      "phase_num": 3,
+      "description": "Task 'ui-sandbox-polish' abandoned: UI polish aborted after human review was declined; diff archived to temp, publishing the committed baseline",
+      "status": "abandoned",
+      "timestamp": 1792697774.693751,
+      "timestamp_str": "2026-10-22 22:36:14"
+    },
+    {
+      "task_id": "ui-sandbox-ci",
+      "phase": "phase 2",
+      "phase_num": 2,
+      "description": "[1/2] Add a GitHub Actions workflow that runs install, tests, build and the UI inventory",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1792697905.622311,
+      "timestamp_str": "2026-10-22 22:38:25",
+      "impact_assessment": {
+        "why": "The published repository should prove itself on every push.",
+        "benefits": "Remote regression shield and a visible delivery baseline for the sandbox.",
+        "risks": "contract: no UI contract change; dependency: actions/checkout and actions/setup-node only; concurrency: independent CI job; state: new .github/workflows/ci.yml",
+        "mitigation": "Pin node 20, use npm ci, update the README tree in the same commit, then run aikit check --strict before committing."
+      }
+    },
+    {
+      "task_id": "ui-sandbox-ci",
+      "phase": "phase 4",
+      "phase_num": 4,
+      "description": "[2/2] CI workflow added and README updated; Phase 4 gates pass; checklists: passed",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1792697958.339385,
+      "timestamp_str": "2026-10-22 22:39:18"
     }
   ]
 }

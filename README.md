@@ -21,6 +21,9 @@ simple: one screen, token-driven theming, and a labelled control for every inter
 | Build the production bundle | `npm run build` |
 | Print the UI inventory | `npm run ui:snapshot` |
 
+GitHub Actions repeats the install, test, build and inventory steps on every push to `master` and
+on every pull request (`.github/workflows/ci.yml`).
+
 ### 🛡️ AIKit UI Guard (run from the AIKit folder)
 
 | Role | Command |
@@ -39,6 +42,9 @@ Color and font literals may live only in `src/theme.css`; every other stylesheet
 
 ```text
 ui-sandbox/
+├── .github/
+│   └── workflows/
+│       └── ci.yml
 ├── .gitignore
 ├── README.md
 ├── index.html
