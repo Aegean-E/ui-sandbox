@@ -1,49 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "ui-sandbox-readme-tree",
-    "last_phase": "phase 2",
+    "task_id": "ui-sandbox-polish-review",
+    "last_phase": "phase 4",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1792865459.804309,
+    "updated_at": 1792866926.2174268,
     "owner": "kilo:main",
     "started_by": "kilo:main",
     "continuations": [],
-    "impact_assessment": {
-      "why": "Phase 4 failed because the README tree omitted the tracked LICENSE file added in e63b57d.",
-      "benefits": "The cold-start tree matches the repository and the guidelines gate passes again.",
-      "risks": "contract: README only; dependency: none; concurrency: none; state: docs only",
-      "mitigation": "One-line tree entry, then rerun aikit check."
-    },
-    "completed_at": 1792865585.6022308
+    "completed_at": 1792866957.2473302
   },
   "checkpoints": [
-    {
-      "task_id": "ui-sandbox-scaffold",
-      "phase": "phase 2",
-      "phase_num": 2,
-      "description": "[1/2] Scaffold a React surface with token theme, inventory proof and UI contract",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1792696153.5925076,
-      "timestamp_str": "2026-10-22 22:09:13",
-      "impact_assessment": {
-        "why": "The user asked for a test project to exercise AIKit's UI changes.",
-        "benefits": "A runnable React+Vite surface with a committed bounded UI contract and mechanical proofs.",
-        "risks": "contract: new .aikit/ui.json surface app; dependency: react, react-dom, vite, @vitejs/plugin-react; concurrency: none; state: .aikit/ui.json committed as baseline",
-        "mitigation": "Keep edits inside src/**, prove with npm run build, npm test and npm run ui:snapshot, then run aikit check."
-      }
-    },
-    {
-      "task_id": "ui-sandbox-scaffold",
-      "phase": "phase 4",
-      "phase_num": 4,
-      "description": "[2/2] Phase 4 gates pass (test, build, hygiene, guidelines, secrets); checklists: passed",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1792696198.7572765,
-      "timestamp_str": "2026-10-22 22:09:58"
-    },
     {
       "task_id": "ui-sandbox-scaffold",
       "phase": "completed",
@@ -228,6 +196,55 @@
       "status": "completed",
       "timestamp": 1792865585.602233,
       "timestamp_str": "2026-10-24 21:13:05",
+      "agent": "kilo:main"
+    },
+    {
+      "task_id": "ui-sandbox-polish-review",
+      "phase": "phase 2",
+      "phase_num": 2,
+      "description": "[1/2] Re-open the bounded app surface and apply the archived visual polish for review",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1792865741.374959,
+      "timestamp_str": "2026-10-24 21:15:41",
+      "agent": "kilo:main",
+      "impact_assessment": {
+        "why": "The archived polish diff from the previous session is still the open, uncommitted UI work and applies cleanly on the current baseline.",
+        "benefits": "The sandbox surface gains header status chips, a grid backdrop, card glow, numbered cue and panel lists, a larger token ring and reduced-motion support.",
+        "risks": "contract: src/** only, data-ui and data-panel inventory unchanged; dependency: none; concurrency: none; state: .aikit/ui_task.json records the baseline 3084496",
+        "mitigation": "Keep every control attribute, use theme tokens only, then run npm test, npm run build and aikit ui verify before asking for review."
+      }
+    },
+    {
+      "task_id": "ui-sandbox-polish-review",
+      "phase": "phase 3",
+      "phase_num": 3,
+      "description": "[2/2] Polish applied to src/App.jsx, src/styles.css and src/theme.css; npm test 5/5, npm run build passed, ui verify 0 strikes; dev server on http://127.0.0.1:5173/ awaiting human review",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1792865754.2497053,
+      "timestamp_str": "2026-10-24 21:15:54",
+      "agent": "kilo:main"
+    },
+    {
+      "task_id": "ui-sandbox-polish-review",
+      "phase": "phase 4",
+      "phase_num": 4,
+      "description": "[2/2] Verified after review: npm test 5/5, npm run build, ui verify 0 strikes, inventory unchanged (11 controls, 5 panels); checklists: passed",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1792866926.2174268,
+      "timestamp_str": "2026-10-24 21:35:26",
+      "agent": "kilo:main"
+    },
+    {
+      "task_id": "ui-sandbox-polish-review",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'ui-sandbox-polish-review' completed successfully.",
+      "status": "completed",
+      "timestamp": 1792866957.2473319,
+      "timestamp_str": "2026-10-24 21:35:57",
       "agent": "kilo:main"
     }
   ]
