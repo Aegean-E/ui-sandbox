@@ -1,42 +1,23 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "ui-sandbox-polish-review",
-    "last_phase": "phase 4",
+    "task_id": "ui-sandbox-readme-history",
+    "last_phase": "phase 2",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1792866926.2174268,
+    "updated_at": 1792867019.993934,
     "owner": "kilo:main",
     "started_by": "kilo:main",
     "continuations": [],
-    "completed_at": 1792866957.2473302
+    "impact_assessment": {
+      "why": "The guidelines gate flags the README tree for omitting the now-tracked ui_history.json.",
+      "benefits": "Cold-start tree matches the repository and the delivery gate passes.",
+      "risks": "contract: README only; dependency: none; concurrency: none; state: docs only",
+      "mitigation": "One tree line, then rerun aikit check --strict."
+    },
+    "completed_at": 1792867073.8960342
   },
   "checkpoints": [
-    {
-      "task_id": "ui-sandbox-scaffold",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'ui-sandbox-scaffold' completed successfully.",
-      "status": "completed",
-      "timestamp": 1792696235.781454,
-      "timestamp_str": "2026-10-22 22:10:35"
-    },
-    {
-      "task_id": "ui-sandbox-polish",
-      "phase": "phase 2",
-      "phase_num": 2,
-      "description": "[1/2] Polish the surface visuals while preserving every inventory entry",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1792697004.4259398,
-      "timestamp_str": "2026-10-22 22:23:24",
-      "impact_assessment": {
-        "why": "Exercise a real bounded UI change under the committed contract.",
-        "benefits": "A more polished, responsive surface and evidence the UI guard catches scope, snapshot and style drift.",
-        "risks": "contract: surface app stays src/**; dependency: none added; concurrency: none; state: .aikit/ui_task.json records the baseline",
-        "mitigation": "Keep data-ui and data-panel sets unchanged, use theme tokens only, then run npm test, npm run build and aikit ui verify."
-      }
-    },
     {
       "task_id": "ui-sandbox-polish",
       "phase": "phase 3",
@@ -245,6 +226,33 @@
       "status": "completed",
       "timestamp": 1792866957.2473319,
       "timestamp_str": "2026-10-24 21:35:57",
+      "agent": "kilo:main"
+    },
+    {
+      "task_id": "ui-sandbox-readme-history",
+      "phase": "phase 2",
+      "phase_num": 2,
+      "description": "[1/1] Add the tracked .aikit/ui_history.json to the README tree; checklists: passed",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1792867019.993934,
+      "timestamp_str": "2026-10-24 21:36:59",
+      "agent": "kilo:main",
+      "impact_assessment": {
+        "why": "The guidelines gate flags the README tree for omitting the now-tracked ui_history.json.",
+        "benefits": "Cold-start tree matches the repository and the delivery gate passes.",
+        "risks": "contract: README only; dependency: none; concurrency: none; state: docs only",
+        "mitigation": "One tree line, then rerun aikit check --strict."
+      }
+    },
+    {
+      "task_id": "ui-sandbox-readme-history",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'ui-sandbox-readme-history' completed successfully.",
+      "status": "completed",
+      "timestamp": 1792867073.8960354,
+      "timestamp_str": "2026-10-24 21:37:53",
       "agent": "kilo:main"
     }
   ]
