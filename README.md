@@ -70,7 +70,8 @@ ui-sandbox/
     ├── guidelines.md
     ├── project.json
     ├── task_ledger.json
-    └── ui.json
+    ├── ui.json
+    └── ui_history.json
 ```
 
 ## 🎨 UI Notes
