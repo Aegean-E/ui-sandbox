@@ -1,5 +1,7 @@
 # ui-sandbox
 
+[![Built with AIKit](https://img.shields.io/badge/built%20with-AIKit-6f42c1)](https://github.com/Aegean-E/AIKit)
+
 A small React + Vite surface for exercising AIKit's bounded UI guard. The app is deliberately
 simple: one screen, token-driven theming, and a labelled control for every interaction.
 
