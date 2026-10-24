@@ -1,12 +1,21 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "ui-sandbox-ci-billing",
-    "last_phase": "phase 4",
+    "task_id": "ui-sandbox-readme-tree",
+    "last_phase": "phase 2",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1792698778.39098,
-    "completed_at": 1792698778.7401648
+    "updated_at": 1792865459.804309,
+    "owner": "kilo:main",
+    "started_by": "kilo:main",
+    "continuations": [],
+    "impact_assessment": {
+      "why": "Phase 4 failed because the README tree omitted the tracked LICENSE file added in e63b57d.",
+      "benefits": "The cold-start tree matches the repository and the guidelines gate passes again.",
+      "risks": "contract: README only; dependency: none; concurrency: none; state: docs only",
+      "mitigation": "One-line tree entry, then rerun aikit check."
+    },
+    "completed_at": 1792865585.6022308
   },
   "checkpoints": [
     {
@@ -193,6 +202,33 @@
       "status": "completed",
       "timestamp": 1792698778.740168,
       "timestamp_str": "2026-10-22 22:52:58"
+    },
+    {
+      "task_id": "ui-sandbox-readme-tree",
+      "phase": "phase 2",
+      "phase_num": 2,
+      "description": "[1/1] Add tracked LICENSE to the README tree so the cold-start tree matches the repo; checklists: passed",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1792865459.804309,
+      "timestamp_str": "2026-10-24 21:10:59",
+      "agent": "kilo:main",
+      "impact_assessment": {
+        "why": "Phase 4 failed because the README tree omitted the tracked LICENSE file added in e63b57d.",
+        "benefits": "The cold-start tree matches the repository and the guidelines gate passes again.",
+        "risks": "contract: README only; dependency: none; concurrency: none; state: docs only",
+        "mitigation": "One-line tree entry, then rerun aikit check."
+      }
+    },
+    {
+      "task_id": "ui-sandbox-readme-tree",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'ui-sandbox-readme-tree' completed successfully.",
+      "status": "completed",
+      "timestamp": 1792865585.602233,
+      "timestamp_str": "2026-10-24 21:13:05",
+      "agent": "kilo:main"
     }
   ]
 }
