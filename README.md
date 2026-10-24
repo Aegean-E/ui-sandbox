@@ -48,6 +48,7 @@ ui-sandbox/
 │   └── workflows/
 │       └── ci.yml
 ├── .gitignore
+├── LICENSE
 ├── README.md
 ├── index.html
 ├── package.json
