@@ -51,13 +51,24 @@ export default function App() {
       data-ui="app-root"
     >
       <header className="topbar" data-panel="topbar">
-        <div>
-          <p className="eyebrow">AIKit bounded UI surface</p>
+        <div className="identity">
+          <p className="eyebrow">
+            <span className="eyebrow-dot" aria-hidden="true" />
+            AIKit bounded UI surface
+          </p>
           <h1>UI Sandbox</h1>
           <p className="subtitle">
             A small React surface for exercising visual changes under the UI
             guard. Edit src/ only, then run the fast and snapshot proofs.
           </p>
+          <div className="chips">
+            <span className="chip">
+              <span className="chip-dot" aria-hidden="true" />
+              Live preview
+            </span>
+            <span className="chip">React + Vite</span>
+            <span className="chip">Token theme</span>
+          </div>
         </div>
         <button
           className="button button-ghost"
