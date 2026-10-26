@@ -40,6 +40,13 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Decision**: Tag the last AGPL-3.0 commit as `v0.1.2-agpl`, switch `LICENSE` to AL-1.1 and `COMMERCIAL.md` to ACL-1.0, add `REUSE.toml` and `LICENSES/LicenseRef-AL-1.1.txt`, bump `package.json` to `0.2.0` with `SEE LICENSE IN LICENSE`, and curate repository topics and description.
 - **Consequences**: Versions up to and including `v0.1.2-agpl` remain available under GNU AGPL-3.0; version `0.2.0` onward is governed by AL-1.1 and ACL-1.0.
 
+### ADR-005: Bind .app text color to theme tokens and enforce ui_required in project config
+- **Date**: 2026-10-26
+- **Status**: Accepted
+- **Context**: Reviewing the last three pushes revealed that `body` sets `color: var(--text)` using `:root`'s dark-mode token (`#e8edf9`), while `.theme-light` is applied to `.app`. Because `.app` did not declare `color: var(--text)`, headings and labels in light theme inherited near-white text on white cards. In addition, `project.json` had `ui_required: false`, so `check --strict` did not verify `.aikit/ui_history.json` surface digests.
+- **Decision**: Add `color: var(--text)` to `.app` in `src/styles.css`, add `aria-pressed` to `theme-toggle` and `aria-live="polite"` to `counter-value` in `src/App.jsx`, use `path.extname` in `scripts/ui-inventory.mjs`, set `ui_required: true` and `test_command: "npm test"` in `.aikit/project.json`, sync `package-lock.json` to `0.2.0`, and cover these invariants in `tests/app.test.mjs`.
+- **Consequences**: Light theme text contrast is restored, `npm test` guards against raw color literals or missing `.app` color binding, and `aikit check --strict` enforces surface digest evidence on every delivery.
+
 ## Licensing migration (v0.1.2-agpl)
 
 - New versions use the Aegean License 1.1 (AL-1.1); versions up to and including `v0.1.2-agpl` remain under GNU AGPL-3.0.

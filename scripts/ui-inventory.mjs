@@ -1,5 +1,5 @@
 import { readFileSync, readdirSync } from "node:fs";
-import { join } from "node:path";
+import { extname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { inventoryEntries } from "./inventory-core.mjs";
 
@@ -13,7 +13,7 @@ function sourceFiles(directory) {
     const path = join(directory, entry.name);
     if (entry.isDirectory()) {
       found.push(...sourceFiles(path));
-    } else if (SOURCE_EXTENSIONS.has(entry.name.slice(entry.name.lastIndexOf(".")))) {
+    } else if (SOURCE_EXTENSIONS.has(extname(entry.name))) {
       found.push(path);
     }
   }

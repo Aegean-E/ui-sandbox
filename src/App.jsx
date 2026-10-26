@@ -19,7 +19,7 @@ const CUES = [
   {
     id: "motion",
     label: "Motion",
-    detail: "Transitions stay short and respect reduced motion next.",
+    detail: "Transitions stay short and respect reduced-motion preferences.",
   },
 ];
 
@@ -73,6 +73,7 @@ export default function App() {
         <button
           className="button button-ghost"
           data-ui="theme-toggle"
+          aria-pressed={theme === "light"}
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           type="button"
         >
@@ -87,7 +88,7 @@ export default function App() {
         >
           <h2>Counter</h2>
           <p className="hint">Increment, decrement, or reset the shared tally.</p>
-          <p className="counter" data-ui="counter-value">
+          <p className="counter" data-ui="counter-value" aria-live="polite">
             {count}
           </p>
           <div className="row">

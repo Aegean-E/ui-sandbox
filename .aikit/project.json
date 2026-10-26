@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "name": "ui-sandbox",
-  "test_command": null,
+  "test_command": "npm test",
   "gates": {},
-  "ui_required": false,
+  "ui_required": true,
   "created": "2026-10-22",
   "topics": [
     "aikit",

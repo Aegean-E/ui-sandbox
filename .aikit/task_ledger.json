@@ -1,52 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "ui-sandbox-normalize",
+    "task_id": "ui-sandbox-audit-fixes",
     "last_phase": "phase 4",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793039553.700682,
+    "updated_at": 1793040383.8307214,
     "owner": "antigravity:fa1a51c8",
     "started_by": "antigravity:fa1a51c8",
     "continuations": [],
-    "completed_at": 1793039580.9535553
+    "completed_at": 1793040384.3287606
   },
   "checkpoints": [
-    {
-      "task_id": "ui-sandbox-ci",
-      "phase": "phase 2",
-      "phase_num": 2,
-      "description": "[1/2] Add a GitHub Actions workflow that runs install, tests, build and the UI inventory",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1792697905.622311,
-      "timestamp_str": "2026-10-22 22:38:25",
-      "impact_assessment": {
-        "why": "The published repository should prove itself on every push.",
-        "benefits": "Remote regression shield and a visible delivery baseline for the sandbox.",
-        "risks": "contract: no UI contract change; dependency: actions/checkout and actions/setup-node only; concurrency: independent CI job; state: new .github/workflows/ci.yml",
-        "mitigation": "Pin node 20, use npm ci, update the README tree in the same commit, then run aikit check --strict before committing."
-      }
-    },
-    {
-      "task_id": "ui-sandbox-ci",
-      "phase": "phase 4",
-      "phase_num": 4,
-      "description": "[2/2] CI workflow added and README updated; Phase 4 gates pass; checklists: passed",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1792697958.339385,
-      "timestamp_str": "2026-10-22 22:39:18"
-    },
-    {
-      "task_id": "ui-sandbox-ci",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'ui-sandbox-ci' completed successfully.",
-      "status": "completed",
-      "timestamp": 1792697981.4995196,
-      "timestamp_str": "2026-10-22 22:39:41"
-    },
     {
       "task_id": "ui-sandbox-ci-blocker",
       "phase": "phase 2",
@@ -256,6 +221,44 @@
       "status": "completed",
       "timestamp": 1793039580.953562,
       "timestamp_str": "2026-10-26 21:33:00",
+      "agent": "antigravity:fa1a51c8"
+    },
+    {
+      "task_id": "ui-sandbox-audit-fixes",
+      "phase": "phase 2",
+      "phase_num": 2,
+      "description": "[1/2] Fix light-theme text contrast bug (.app color token), add theme-toggle aria-pressed & counter-value aria-live, and update reduced-motion cue copy; [2/2] Fix ui-inventory.mjs extension parsing, sync package-lock.json & project.json, and add regression tests",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793040191.2662413,
+      "timestamp_str": "2026-10-26 21:43:11",
+      "agent": "antigravity:fa1a51c8",
+      "impact_assessment": {
+        "why": "Analysis of the last 3 pushes found a light-theme contrast defect (.app inherits dark-mode #e8edf9 text color from body), missing aria attributes, stale reduced-motion copy, fragile extension slicing in ui-inventory.mjs, and package-lock.json version/license drift",
+        "benefits": "Readable light theme, complete accessibility attributes, accurate inventory extension handling, synced lockfile metadata, and regression tests",
+        "risks": "contract: src/** bounded by ui.json in milestone 1; dependency: none; concurrency: none; state: .aikit/ui_history.json updated via ui finish",
+        "mitigation": "Run milestone 1 through aikit ui begin/verify/finish, then commit tests and lockfile/script fixes in milestone 2 with check --strict"
+      }
+    },
+    {
+      "task_id": "ui-sandbox-audit-fixes",
+      "phase": "phase 4",
+      "phase_num": 4,
+      "description": "[2/2] Fixed light-theme .app color inheritance, added aria attributes and regression tests, fixed ui-inventory extname, synced package-lock.json and enabled ui_required; 5/5 gates passed; checklists: passed",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793040383.8307214,
+      "timestamp_str": "2026-10-26 21:46:23",
+      "agent": "antigravity:fa1a51c8"
+    },
+    {
+      "task_id": "ui-sandbox-audit-fixes",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'ui-sandbox-audit-fixes' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793040384.3287628,
+      "timestamp_str": "2026-10-26 21:46:24",
       "agent": "antigravity:fa1a51c8"
     }
   ]

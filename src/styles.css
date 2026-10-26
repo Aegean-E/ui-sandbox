@@ -10,6 +10,7 @@
 .app {
   min-height: 100vh;
   padding: 56px clamp(20px, 6vw, 72px) 40px;
+  color: var(--text);
   background:
     linear-gradient(var(--grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
