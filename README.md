@@ -85,8 +85,6 @@ ui-sandbox/
 - `scripts/inventory-core.mjs` turns those attributes into the sorted inventory lines that
   `npm run ui:snapshot` prints; `tests/app.test.mjs` keeps the control list honest.
 
-> **License history:** versions up to and including `v0.1.2-agpl` remain available under GNU AGPL-3.0.
-
 ## 📜 License
 
 Free for personal use under the Aegean License 1.1 (AL-1.1); see [LICENSE](LICENSE). Any commercial use needs the Aegean Commercial License 1.0 (ACL-1.0); see [COMMERCIAL.md](COMMERCIAL.md).
