@@ -1,6 +1,6 @@
-# ui-sandbox
+# UI Sandbox
 
-[![Built with AIKit](https://img.shields.io/badge/built%20with-AIKit-6f42c1)](https://github.com/Aegean-E/AIKit)
+[![Built with AIKit](https://img.shields.io/badge/built%20with-AIKit-6f42c1)](https://github.com/AegeanWorks/AIKit)
 
 A small React + Vite surface for exercising AIKit's bounded UI guard. The app is deliberately
 simple: one screen, token-driven theming, and a labelled control for every interaction.
@@ -49,6 +49,9 @@ ui-sandbox/
 │       └── ci.yml
 ├── .gitignore
 ├── LICENSE
+├── LICENSES/
+│   └── LicenseRef-AL-1.1.txt
+├── REUSE.toml
 ├── README.md
 ├── COMMERCIAL.md
 ├── index.html
@@ -81,3 +84,9 @@ ui-sandbox/
 - `data-panel` marks each layout panel.
 - `scripts/inventory-core.mjs` turns those attributes into the sorted inventory lines that
   `npm run ui:snapshot` prints; `tests/app.test.mjs` keeps the control list honest.
+
+> **License history:** versions up to and including `v0.1.2-agpl` remain available under GNU AGPL-3.0.
+
+## 📜 License
+
+Free for personal use under the Aegean License 1.1 (AL-1.1); see [LICENSE](LICENSE). Any commercial use needs the Aegean Commercial License 1.0 (ACL-1.0); see [COMMERCIAL.md](COMMERCIAL.md).

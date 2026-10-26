@@ -1,7 +1,9 @@
 {
   "name": "ui-sandbox",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
+  "license": "SEE LICENSE IN LICENSE",
+  "description": "A small React + Vite surface for exercising AIKit's bounded UI guard: one screen, token-driven theming, and a labelled control for every interaction.",
   "type": "module",
   "scripts": {
     "dev": "vite",

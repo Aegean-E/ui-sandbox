@@ -4,5 +4,16 @@
   "test_command": null,
   "gates": {},
   "ui_required": false,
-  "created": "2026-10-22"
+  "created": "2026-10-22",
+  "topics": [
+    "aikit",
+    "developer-tools",
+    "react",
+    "vite",
+    "javascript",
+    "testing",
+    "ui",
+    "design-tokens",
+    "source-available"
+  ]
 }

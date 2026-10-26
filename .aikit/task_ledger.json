@@ -1,52 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "ui-sandbox-readme-history",
-    "last_phase": "phase 2",
+    "task_id": "ui-sandbox-normalize",
+    "last_phase": "phase 4",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1792867019.993934,
-    "owner": "kilo:main",
-    "started_by": "kilo:main",
+    "updated_at": 1793039553.700682,
+    "owner": "antigravity:fa1a51c8",
+    "started_by": "antigravity:fa1a51c8",
     "continuations": [],
-    "impact_assessment": {
-      "why": "The guidelines gate flags the README tree for omitting the now-tracked ui_history.json.",
-      "benefits": "Cold-start tree matches the repository and the delivery gate passes.",
-      "risks": "contract: README only; dependency: none; concurrency: none; state: docs only",
-      "mitigation": "One tree line, then rerun aikit check --strict."
-    },
-    "completed_at": 1792867073.8960342
+    "completed_at": 1793039580.9535553
   },
   "checkpoints": [
-    {
-      "task_id": "ui-sandbox-polish",
-      "phase": "phase 3",
-      "phase_num": 3,
-      "description": "[2/2] Visual polish applied in src/App.jsx, src/styles.css and src/theme.css; ui verify passed with 0 strikes; awaiting human review",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1792697351.522311,
-      "timestamp_str": "2026-10-22 22:29:11"
-    },
-    {
-      "task_id": "ui-sandbox-polish",
-      "phase": "phase 3",
-      "phase_num": 3,
-      "description": "Human review declined; the UI task stays open and src/ changes stay uncommitted until a human reviews the running UI",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1792697525.970096,
-      "timestamp_str": "2026-10-22 22:32:05"
-    },
-    {
-      "task_id": "ui-sandbox-polish",
-      "phase": "abandoned",
-      "phase_num": 3,
-      "description": "Task 'ui-sandbox-polish' abandoned: UI polish aborted after human review was declined; diff archived to temp, publishing the committed baseline",
-      "status": "abandoned",
-      "timestamp": 1792697774.693751,
-      "timestamp_str": "2026-10-22 22:36:14"
-    },
     {
       "task_id": "ui-sandbox-ci",
       "phase": "phase 2",
@@ -254,6 +219,44 @@
       "timestamp": 1792867073.8960354,
       "timestamp_str": "2026-10-24 21:37:53",
       "agent": "kilo:main"
+    },
+    {
+      "task_id": "ui-sandbox-normalize",
+      "phase": "phase 2",
+      "phase_num": 2,
+      "description": "[1/2] Plan repository normalization: tag v0.1.2-agpl, relicense to AL-1.1 with ACL-1.0 terms and REUSE metadata, curate topics and rename repo to UI-Sandbox",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793039395.3878627,
+      "timestamp_str": "2026-10-26 21:29:55",
+      "agent": "antigravity:fa1a51c8",
+      "impact_assessment": {
+        "why": "ui-sandbox was skipped in the 2026-10-26 normalization pass and needs the same AL-1.1 license, title-cased GitHub name, curated topics and <=350-char description",
+        "benefits": "Consistent licensing (AL-1.1 + ACL-1.0), REUSE SPDX metadata, and discoverable repository metadata on GitHub",
+        "risks": "contract: new versions under AL-1.1, GitHub repo renamed to UI-Sandbox; dependency: gh CLI; concurrency: none; state: LICENSE, COMMERCIAL.md, REUSE.toml, LICENSES/, README.md, package.json, .aikit/",
+        "mitigation": "Tag HEAD as v0.1.2-agpl before relicensing, run aikit check --strict before pushing, rely on GitHub rename redirects"
+      }
+    },
+    {
+      "task_id": "ui-sandbox-normalize",
+      "phase": "phase 4",
+      "phase_num": 4,
+      "description": "[2/2] Relicensed to AL-1.1 with v0.1.2-agpl boundary tag, ACL-1.0 commercial terms, REUSE metadata and curated topics; 5/5 gates passed; checklists: passed",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793039553.700682,
+      "timestamp_str": "2026-10-26 21:32:33",
+      "agent": "antigravity:fa1a51c8"
+    },
+    {
+      "task_id": "ui-sandbox-normalize",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'ui-sandbox-normalize' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793039580.953562,
+      "timestamp_str": "2026-10-26 21:33:00",
+      "agent": "antigravity:fa1a51c8"
     }
   ]
 }
