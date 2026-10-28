@@ -1,7 +1,7 @@
 # UI Sandbox
 
 <!-- aegean:media:start -->
-<p align="center"><img src="assets/logo.png" alt="UI-Sandbox logo" width="96" height="96"></p>
+<p align="center"><img src="assets/logo.jpg" alt="UI-Sandbox logo" width="96" height="96"></p>
 <p align="center"><img src="assets/social-preview.png" alt="UI-Sandbox social preview" width="100%"></p>
 <!-- aegean:media:end -->
 
