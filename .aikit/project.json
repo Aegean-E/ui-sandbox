@@ -7,6 +7,7 @@
   "created": "2026-10-22",
   "topics": [
     "aikit",
+    "aikit-integrated",
     "source-available",
     "aegean-license",
     "commercial-license",
@@ -24,8 +25,7 @@
     "user-interface",
     "web-app",
     "accessibility",
-    "component-driven",
-    "css"
+    "component-driven"
   ],
   "has_ui": true,
   "ui_kind": "web",
