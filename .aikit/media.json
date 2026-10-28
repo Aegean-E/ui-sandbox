@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "name": "ui-sandbox",
+  "repo": "UI-Sandbox",
+  "has_ui": true,
+  "ui_kind": "web",
+  "palette": [
+    "#07111f",
+    "#0e2a47",
+    "#60a5fa",
+    "#e2f8ff"
+  ],
+  "assets": {
+    "logo": {
+      "path": "assets/logo.svg",
+      "status": "approved",
+      "commit": "",
+      "generated_at": "2026-10-28T08:02:58",
+      "review": {
+        "status": "approved",
+        "reviewer": "subagent:vision-review",
+        "method": "vision",
+        "notes": "US monogram in blue, dark navy, balanced and legible.",
+        "score": 93,
+        "reviewed_at": "2026-10-28T08:10:44"
+      }
+    },
+    "social_preview": {
+      "path": "assets/social-preview.svg",
+      "status": "approved",
+      "commit": "",
+      "generated_at": "2026-10-28T08:02:58",
+      "review": {
+        "status": "approved",
+        "reviewer": "subagent:vision-review",
+        "method": "vision",
+        "notes": "US icon, title, React/Vite description, WEB tag, legible.",
+        "score": 93,
+        "reviewed_at": "2026-10-28T08:10:44"
+      }
+    },
+    "social_preview_png": {
+      "path": "assets/social-preview.png",
+      "status": "pending_review",
+      "commit": "",
+      "generated_at": "2026-10-28T08:02:59",
+      "review": null
+    }
+  },
+  "screenshots": [
+    {
+      "path": "assets/screenshots/2026-10-28-home.png",
+      "alt": "UI-Sandbox interface at 2026-10-28",
+      "caption": "UI-Sandbox interface captured from index.html",
+      "commit": "b1a80356babe8c2082039ec44b17b310f0dea4c0",
+      "taken_at": "2026-10-28",
+      "viewport": "1440x900",
+      "width": 1440,
+      "height": 900,
+      "status": "rejected",
+      "review": {
+        "status": "rejected",
+        "reviewer": "subagent:vision-review",
+        "method": "vision",
+        "notes": "2026-10-28-home.png \u2014 completely blank white image, no UI content.",
+        "score": 5,
+        "reviewed_at": "2026-10-28T08:10:44"
+      }
+    }
+  ]
+}

@@ -1,5 +1,10 @@
 # UI Sandbox
 
+<!-- aegean:media:start -->
+<p align="center"><img src="assets/logo.svg" alt="UI-Sandbox logo" width="96" height="96"></p>
+<p align="center"><img src="assets/social-preview.svg" alt="UI-Sandbox social preview" width="100%"></p>
+<!-- aegean:media:end -->
+
 [![Built with AIKit](https://img.shields.io/badge/built%20with-AIKit-6f42c1)](https://github.com/AegeanWorks/AIKit)
 
 A small React + Vite surface for exercising AIKit's bounded UI guard. The app is deliberately
