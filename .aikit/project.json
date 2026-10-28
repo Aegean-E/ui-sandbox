@@ -7,25 +7,25 @@
   "created": "2026-10-22",
   "topics": [
     "aikit",
+    "source-available",
+    "aegean-license",
+    "commercial-license",
     "developer-tools",
     "react",
     "testing",
     "vite",
     "design-tokens",
     "javascript",
-    "source-available",
     "ui",
     "aegeanworks",
     "component-library",
     "design-system",
     "frontend",
-    "software",
     "user-interface",
     "web-app",
-    "component-driven",
     "accessibility",
-    "css",
-    "web-development"
+    "component-driven",
+    "css"
   ],
   "has_ui": true,
   "ui_kind": "web",
@@ -60,5 +60,10 @@
     "css",
     "web-development",
     "frontend"
+  ],
+  "license_topics": [
+    "source-available",
+    "aegean-license",
+    "commercial-license"
   ]
 }

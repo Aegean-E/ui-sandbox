@@ -2,7 +2,6 @@
 
 <!-- aegean:media:start -->
 <p align="center"><img src="assets/social-preview.png" alt="UI-Sandbox social preview" width="100%"></p>
-*The banner and logo are AI-generated brand assets. They are illustrative and may not literally depict every feature or the full project scope.*
 <!-- aegean:media:end -->
 
 [![Built with AIKit](https://img.shields.io/badge/built%20with-AIKit-6f42c1)](https://github.com/AegeanWorks/AIKit)
@@ -89,6 +88,12 @@ ui-sandbox/
 - `data-panel` marks each layout panel.
 - `scripts/inventory-core.mjs` turns those attributes into the sorted inventory lines that
   `npm run ui:snapshot` prints; `tests/app.test.mjs` keeps the control list honest.
+
+<!-- aegean:brand-assets:start -->
+## 🎨 Brand Assets
+
+> **AI-Generated Brand Artwork.** The banner and logo are **AI-generated brand assets**. They are illustrative and may not literally depict every feature or the full project scope.
+<!-- aegean:brand-assets:end -->
 
 ## 📜 License
 
