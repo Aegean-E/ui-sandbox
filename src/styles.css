@@ -380,6 +380,71 @@ h1 {
   margin: 0;
 }
 
+.card-tokens {
+  grid-column: 1 / -1;
+}
+
+.token-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 16px;
+  align-items: end;
+}
+
+.token-group {
+  display: grid;
+  gap: 8px;
+}
+
+.token-group label.label {
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+.card-tokens .contrast {
+  max-width: 420px;
+}
+
+@media (max-width: 900px) {
+  .token-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+.preset-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.preset[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.range {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.app.compact {
+  padding: 32px clamp(16px, 4vw, 48px) 28px;
+}
+
+.compact .topbar {
+  margin-bottom: 28px;
+  gap: 16px;
+}
+
+.compact .grid {
+  gap: 14px;
+}
+
+.compact .card {
+  gap: 10px;
+  padding: 18px;
+}
+
 .empty {
   margin: 0;
   padding: 12px;

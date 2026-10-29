@@ -24,13 +24,20 @@ test("the app keeps every interactive control", () => {
     "status-results",
     "status-theme",
     "theme-toggle",
+    "token-density",
+    "token-preset-aurora",
+    "token-preset-ember",
+    "token-preset-forest",
+    "token-preset-mono",
+    "token-radius",
+    "token-reset",
   ]);
 });
 
 test("the app declares every panel", () => {
   const panels = entries.filter((entry) => entry.startsWith("panel: "));
 
-  assert.deepEqual(panels, ["panel: counter", "panel: filter", "panel: footer", "panel: theme", "panel: topbar"]);
+  assert.deepEqual(panels, ["panel: counter", "panel: filter", "panel: footer", "panel: theme", "panel: tokens", "panel: topbar"]);
 });
 
 test(".app binds color to --text so light theme overrides body dark-mode text", () => {
@@ -47,5 +54,20 @@ test("interactive toggles and live counter carry accessibility attributes", () =
   assert.match(appSource, /data-ui="theme-toggle"[\s\S]*?aria-pressed=\{theme === "light"\}/);
   assert.match(appSource, /data-ui="highlight-toggle"[\s\S]*?aria-pressed=\{highlight\}/);
   assert.match(appSource, /data-ui="counter-value"\s+aria-live="polite"/);
+});
+
+test("the token panel exposes presets, radius, density and reset", () => {
+  for (const id of [
+    "token-preset-aurora",
+    "token-preset-ember",
+    "token-preset-forest",
+    "token-preset-mono",
+    "token-radius",
+    "token-density",
+    "token-reset",
+  ]) {
+    assert.ok(appSource.includes(`data-ui="${id}"`), `${id} must stay in the app`);
+  }
+  assert.ok(appSource.includes('data-panel="tokens"'), "the tokens panel must stay declared");
 });
 

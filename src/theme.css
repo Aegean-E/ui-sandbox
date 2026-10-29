@@ -61,6 +61,33 @@
   --shadow-glow: rgba(36, 86, 216, 0.2);
 }
 
+.accent-ember {
+  --accent: #fb923c;
+  --accent-strong: #ea580c;
+  --accent-contrast: #1a0b02;
+  --accent-soft: rgba(251, 146, 60, 0.16);
+  --accent-line: rgba(251, 146, 60, 0.42);
+  --shadow-glow: rgba(234, 88, 12, 0.28);
+}
+
+.accent-forest {
+  --accent: #34d399;
+  --accent-strong: #10b981;
+  --accent-contrast: #022c22;
+  --accent-soft: rgba(52, 211, 153, 0.16);
+  --accent-line: rgba(52, 211, 153, 0.42);
+  --shadow-glow: rgba(16, 185, 129, 0.28);
+}
+
+.accent-mono {
+  --accent: #94a3b8;
+  --accent-strong: #7c8ba1;
+  --accent-contrast: #0f172a;
+  --accent-soft: rgba(148, 163, 184, 0.16);
+  --accent-line: rgba(148, 163, 184, 0.42);
+  --shadow-glow: rgba(124, 139, 161, 0.28);
+}
+
 body {
   margin: 0;
   min-height: 100vh;

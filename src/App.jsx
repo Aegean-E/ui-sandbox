@@ -29,6 +29,8 @@ const PANELS = [
   { id: "theme", label: "Theme", detail: "Token-driven light and dark palettes." },
 ];
 
+const DEFAULT_RADIUS = 18;
+
 const THEME_STORAGE_KEY = "ui-sandbox-theme";
 const CONTRAST_TARGET = 4.5;
 const CONTRAST_PAIRS = [
@@ -105,6 +107,9 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [highlight, setHighlight] = useState(false);
   const [contrast, setContrast] = useState([]);
+  const [accent, setAccent] = useState("aurora");
+  const [radius, setRadius] = useState(DEFAULT_RADIUS);
+  const [compact, setCompact] = useState(false);
 
   useEffect(() => {
     try {
@@ -137,7 +142,7 @@ export default function App() {
         };
       }),
     );
-  }, [theme]);
+  }, [theme, accent]);
 
   const results = useMemo(() => {
     const needle = query.trim().toLowerCase();
@@ -152,8 +157,12 @@ export default function App() {
   return (
     <div
       ref={appRef}
-      className={`app theme-${theme}${highlight ? " outline" : ""}`}
+      className={`app theme-${theme} accent-${accent}${compact ? " compact" : ""}${highlight ? " outline" : ""}`}
       data-ui="app-root"
+      style={{
+        "--radius": `${radius}px`,
+        "--radius-small": `${Math.max(6, Math.round(radius * 0.56))}px`,
+      }}
     >
       <header className="topbar" data-panel="topbar">
         <div className="identity">
@@ -264,6 +273,106 @@ export default function App() {
               </li>
             ))}
           </ul>
+          <button
+            className="button button-ghost"
+            data-ui="highlight-toggle"
+            aria-pressed={highlight}
+            onClick={() => setHighlight(!highlight)}
+            type="button"
+          >
+            {highlight ? "Hide outlines" : "Show outlines"}
+          </button>
+        </section>
+
+        <section className="card card-tokens" data-panel="tokens">
+          <h2>Tokens</h2>
+          <p className="hint">
+            Change the accent, radius and density; the contrast proof follows.
+          </p>
+          <div className="token-grid">
+            <div className="token-group">
+              <span className="label">Accent</span>
+              <div className="preset-row" role="group" aria-label="Accent preset">
+                <button
+                  className="button button-ghost preset"
+                  data-ui="token-preset-aurora"
+                  aria-pressed={accent === "aurora"}
+                  onClick={() => setAccent("aurora")}
+                  type="button"
+                >
+                  Aurora
+                </button>
+                <button
+                  className="button button-ghost preset"
+                  data-ui="token-preset-ember"
+                  aria-pressed={accent === "ember"}
+                  onClick={() => setAccent("ember")}
+                  type="button"
+                >
+                  Ember
+                </button>
+                <button
+                  className="button button-ghost preset"
+                  data-ui="token-preset-forest"
+                  aria-pressed={accent === "forest"}
+                  onClick={() => setAccent("forest")}
+                  type="button"
+                >
+                  Forest
+                </button>
+                <button
+                  className="button button-ghost preset"
+                  data-ui="token-preset-mono"
+                  aria-pressed={accent === "mono"}
+                  onClick={() => setAccent("mono")}
+                  type="button"
+                >
+                  Mono
+                </button>
+              </div>
+            </div>
+            <div className="token-group">
+              <label className="label" htmlFor="token-radius">
+                Card radius: {radius}px
+              </label>
+              <input
+                className="range"
+                data-ui="token-radius"
+                id="token-radius"
+                max="28"
+                min="4"
+                onChange={(event) => setRadius(Number(event.target.value))}
+                step="1"
+                type="range"
+                value={radius}
+              />
+            </div>
+            <div className="token-group">
+              <button
+                className="button button-ghost"
+                data-ui="token-density"
+                aria-pressed={compact}
+                onClick={() => setCompact(!compact)}
+                type="button"
+              >
+                {compact ? "Comfortable spacing" : "Compact spacing"}
+              </button>
+            </div>
+            <div className="token-group">
+              <button
+                className="button button-ghost"
+                data-ui="token-reset"
+                onClick={() => {
+                  setAccent("aurora");
+                  setRadius(DEFAULT_RADIUS);
+                  setCompact(false);
+                }}
+                type="button"
+              >
+                Reset tokens
+              </button>
+            </div>
+          </div>
           <div className="contrast" aria-live="polite">
             <p className="contrast-title">Contrast proof</p>
             {contrast.length === 0 ? (
@@ -281,15 +390,6 @@ export default function App() {
               ))
             )}
           </div>
-          <button
-            className="button button-ghost"
-            data-ui="highlight-toggle"
-            aria-pressed={highlight}
-            onClick={() => setHighlight(!highlight)}
-            type="button"
-          >
-            {highlight ? "Hide outlines" : "Show outlines"}
-          </button>
         </section>
       </main>
 
