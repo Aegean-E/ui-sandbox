@@ -19,6 +19,7 @@
   --chip-bg: rgba(74, 222, 128, 0.12);
   --chip-border: rgba(74, 222, 128, 0.32);
   --success: #4ade80;
+  --danger: #f87171;
   --shadow: rgba(5, 10, 25, 0.55);
   --shadow-glow: rgba(61, 123, 253, 0.28);
   --radius: 18px;
@@ -55,6 +56,7 @@
   --chip-bg: rgba(21, 128, 61, 0.1);
   --chip-border: rgba(21, 128, 61, 0.3);
   --success: #15803d;
+  --danger: #b91c1c;
   --shadow: rgba(24, 39, 75, 0.16);
   --shadow-glow: rgba(36, 86, 216, 0.2);
 }

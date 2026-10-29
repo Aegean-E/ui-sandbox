@@ -346,6 +346,40 @@ h1 {
   line-height: 1.5;
 }
 
+.contrast {
+  display: grid;
+  gap: 6px;
+  padding-top: 4px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
+.contrast-title {
+  margin: 0;
+  color: var(--text);
+  font-weight: var(--weight-strong);
+}
+
+.contrast-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 10px;
+  margin: 0;
+}
+
+.contrast-row span:last-child {
+  color: var(--success);
+}
+
+.contrast-row.is-failing span:last-child {
+  color: var(--danger);
+}
+
+.contrast-empty {
+  margin: 0;
+}
+
 .empty {
   margin: 0;
   padding: 12px;

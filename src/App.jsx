@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const CUES = [
   {
@@ -29,11 +29,77 @@ const PANELS = [
   { id: "theme", label: "Theme", detail: "Token-driven light and dark palettes." },
 ];
 
+const CONTRAST_TARGET = 4.5;
+const CONTRAST_PAIRS = [
+  { label: "Body text", foreground: "--text", background: "--bg" },
+  { label: "Muted text", foreground: "--text-muted", background: "--bg-soft" },
+  { label: "Primary button", foreground: "--accent-contrast", background: "--accent" },
+];
+
+function parseColor(value) {
+  const text = value.trim();
+  const hex = text.match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/i);
+  if (hex) {
+    const expanded =
+      hex[1].length === 3
+        ? hex[1].split("").map((part) => part + part).join("")
+        : hex[1];
+    return [0, 2, 4].map((offset) => parseInt(expanded.slice(offset, offset + 2), 16) / 255);
+  }
+  const rgb = text.match(/^rgba?\(([^)]+)\)$/i);
+  if (rgb) {
+    const parts = rgb[1].split(",").map((part) => Number.parseFloat(part));
+    if (parts.length >= 3 && parts.slice(0, 3).every(Number.isFinite)) {
+      return parts.slice(0, 3).map((part) => part / 255);
+    }
+  }
+  return null;
+}
+
+function luminance(rgb) {
+  const [r, g, b] = rgb.map((part) =>
+    part <= 0.03928 ? part / 12.92 : ((part + 0.055) / 1.055) ** 2.4,
+  );
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+
+function contrastRatio(foreground, background) {
+  const fg = parseColor(foreground);
+  const bg = parseColor(background);
+  if (!fg || !bg) {
+    return null;
+  }
+  const lighter = Math.max(luminance(fg), luminance(bg));
+  const darker = Math.min(luminance(fg), luminance(bg));
+  return (lighter + 0.05) / (darker + 0.05);
+}
+
 export default function App() {
+  const appRef = useRef(null);
   const [theme, setTheme] = useState("dark");
   const [count, setCount] = useState(0);
   const [query, setQuery] = useState("");
   const [highlight, setHighlight] = useState(false);
+  const [contrast, setContrast] = useState([]);
+
+  useEffect(() => {
+    const node = appRef.current;
+    if (!node) {
+      return;
+    }
+    const styles = getComputedStyle(node);
+    const read = (name) => styles.getPropertyValue(name);
+    setContrast(
+      CONTRAST_PAIRS.map((pair) => {
+        const ratio = contrastRatio(read(pair.foreground), read(pair.background));
+        return {
+          ...pair,
+          ratio,
+          pass: ratio !== null && ratio >= CONTRAST_TARGET,
+        };
+      }),
+    );
+  }, [theme]);
 
   const results = useMemo(() => {
     const needle = query.trim().toLowerCase();
@@ -47,6 +113,7 @@ export default function App() {
 
   return (
     <div
+      ref={appRef}
       className={`app theme-${theme}${highlight ? " outline" : ""}`}
       data-ui="app-root"
     >
@@ -159,6 +226,23 @@ export default function App() {
               </li>
             ))}
           </ul>
+          <div className="contrast" aria-live="polite">
+            <p className="contrast-title">Contrast proof</p>
+            {contrast.length === 0 ? (
+              <p className="contrast-empty">Checking theme tokens...</p>
+            ) : (
+              contrast.map((entry) => (
+                <p
+                  className={`contrast-row${entry.pass ? "" : " is-failing"}`}
+                  key={entry.label}
+                >
+                  <span>{entry.label}</span>
+                  <span>{entry.ratio === null ? "unknown" : `${entry.ratio.toFixed(1)}:1`}</span>
+                  <span>{entry.pass ? "AA" : "below AA"}</span>
+                </p>
+              ))
+            )}
+          </div>
           <button
             className="button button-ghost"
             data-ui="highlight-toggle"
