@@ -31,6 +31,9 @@ const PANELS = [
 ];
 
 const DEFAULT_RADIUS = 18;
+const TOKEN_STORAGE_KEY = "ui-sandbox-tokens";
+const ACCENT_IDS = ["aurora", "ember", "forest", "mono"];
+const DEFAULT_TOKENS = { accent: "aurora", radius: DEFAULT_RADIUS, compact: false };
 
 const THEME_STORAGE_KEY = "ui-sandbox-theme";
 const CONTRAST_TARGET = 4.5;
@@ -61,6 +64,28 @@ function preferredTheme() {
     return "dark";
   }
   return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+}
+
+function readStoredTokens() {
+  if (typeof window === "undefined") {
+    return DEFAULT_TOKENS;
+  }
+  try {
+    const stored = JSON.parse(window.localStorage.getItem(TOKEN_STORAGE_KEY) || "null");
+    if (!stored || typeof stored !== "object") {
+      return DEFAULT_TOKENS;
+    }
+    return {
+      accent: ACCENT_IDS.includes(stored.accent) ? stored.accent : DEFAULT_TOKENS.accent,
+      radius:
+        Number.isInteger(stored.radius) && stored.radius >= 4 && stored.radius <= 28
+          ? stored.radius
+          : DEFAULT_TOKENS.radius,
+      compact: typeof stored.compact === "boolean" ? stored.compact : DEFAULT_TOKENS.compact,
+    };
+  } catch {
+    return DEFAULT_TOKENS;
+  }
 }
 
 function parseColor(value) {
@@ -108,9 +133,8 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [highlight, setHighlight] = useState(false);
   const [contrast, setContrast] = useState([]);
-  const [accent, setAccent] = useState("aurora");
-  const [radius, setRadius] = useState(DEFAULT_RADIUS);
-  const [compact, setCompact] = useState(false);
+  const [tokens, setTokens] = useState(readStoredTokens);
+  const { accent, radius, compact } = tokens;
 
   useEffect(() => {
     try {
@@ -119,6 +143,14 @@ export default function App() {
       // Storage can be unavailable; the in-memory theme still works.
     }
   }, [theme]);
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(TOKEN_STORAGE_KEY, JSON.stringify(tokens));
+    } catch {
+      // Storage can be unavailable; the in-memory tokens still work.
+    }
+  }, [tokens]);
 
   useEffect(() => {
     const node = appRef.current;
@@ -144,6 +176,8 @@ export default function App() {
       }),
     );
   }, [theme, accent]);
+
+  const chooseAccent = (value) => setTokens((current) => ({ ...current, accent: value }));
 
   const results = useMemo(() => {
     const needle = query.trim().toLowerCase();
@@ -298,7 +332,7 @@ export default function App() {
                   className="button button-ghost preset"
                   data-ui="token-preset-aurora"
                   aria-pressed={accent === "aurora"}
-                  onClick={() => setAccent("aurora")}
+                  onClick={() => chooseAccent("aurora")}
                   type="button"
                 >
                   Aurora
@@ -307,7 +341,7 @@ export default function App() {
                   className="button button-ghost preset"
                   data-ui="token-preset-ember"
                   aria-pressed={accent === "ember"}
-                  onClick={() => setAccent("ember")}
+                  onClick={() => chooseAccent("ember")}
                   type="button"
                 >
                   Ember
@@ -316,7 +350,7 @@ export default function App() {
                   className="button button-ghost preset"
                   data-ui="token-preset-forest"
                   aria-pressed={accent === "forest"}
-                  onClick={() => setAccent("forest")}
+                  onClick={() => chooseAccent("forest")}
                   type="button"
                 >
                   Forest
@@ -325,7 +359,7 @@ export default function App() {
                   className="button button-ghost preset"
                   data-ui="token-preset-mono"
                   aria-pressed={accent === "mono"}
-                  onClick={() => setAccent("mono")}
+                  onClick={() => chooseAccent("mono")}
                   type="button"
                 >
                   Mono
@@ -342,7 +376,12 @@ export default function App() {
                 id="token-radius"
                 max="28"
                 min="4"
-                onChange={(event) => setRadius(Number(event.target.value))}
+                onChange={(event) =>
+                  setTokens((current) => ({
+                    ...current,
+                    radius: Number(event.target.value),
+                  }))
+                }
                 step="1"
                 type="range"
                 value={radius}
@@ -353,7 +392,7 @@ export default function App() {
                 className="button button-ghost"
                 data-ui="token-density"
                 aria-pressed={compact}
-                onClick={() => setCompact(!compact)}
+                onClick={() => setTokens((current) => ({ ...current, compact: !current.compact }))}
                 type="button"
               >
                 {compact ? "Comfortable spacing" : "Compact spacing"}
@@ -363,11 +402,7 @@ export default function App() {
               <button
                 className="button button-ghost"
                 data-ui="token-reset"
-                onClick={() => {
-                  setAccent("aurora");
-                  setRadius(DEFAULT_RADIUS);
-                  setCompact(false);
-                }}
+                onClick={() => setTokens(DEFAULT_TOKENS)}
                 type="button"
               >
                 Reset tokens
