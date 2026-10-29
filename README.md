@@ -52,6 +52,9 @@ ui-sandbox/
 │   └── workflows/
 │       └── ci.yml
 ├── .gitignore
+├── assets/
+│   ├── logo.jpg
+│   └── social-preview.png
 ├── LICENSE
 ├── LICENSES/
 │   └── LicenseRef-AL-1.1.txt
@@ -76,6 +79,7 @@ ui-sandbox/
 └── .aikit/
     ├── decisions.md
     ├── guidelines.md
+    ├── media.json
     ├── project.json
     ├── task_ledger.json
     ├── ui.json
