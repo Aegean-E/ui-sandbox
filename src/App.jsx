@@ -27,6 +27,7 @@ const PANELS = [
   { id: "counter", label: "Counter", detail: "Stateful controls with labelled actions." },
   { id: "filter", label: "Search", detail: "Controlled input with live filtering." },
   { id: "theme", label: "Theme", detail: "Token-driven light and dark palettes." },
+  { id: "tokens", label: "Tokens", detail: "Live accent, radius and density controls." },
 ];
 
 const DEFAULT_RADIUS = 18;
