@@ -29,12 +29,36 @@ const PANELS = [
   { id: "theme", label: "Theme", detail: "Token-driven light and dark palettes." },
 ];
 
+const THEME_STORAGE_KEY = "ui-sandbox-theme";
 const CONTRAST_TARGET = 4.5;
 const CONTRAST_PAIRS = [
-  { label: "Body text", foreground: "--text", background: "--bg" },
-  { label: "Muted text", foreground: "--text-muted", background: "--bg-soft" },
-  { label: "Primary button", foreground: "--accent-contrast", background: "--accent" },
+  { label: "Body text", foreground: "--text", backgrounds: ["--bg"] },
+  { label: "Muted text", foreground: "--text-muted", backgrounds: ["--bg-soft"] },
+  {
+    label: "Primary button",
+    foreground: "--accent-contrast",
+    backgrounds: ["--accent", "--accent-strong"],
+  },
 ];
+
+function readStoredTheme() {
+  if (typeof window === "undefined") {
+    return null;
+  }
+  try {
+    const stored = window.localStorage.getItem(THEME_STORAGE_KEY);
+    return stored === "light" || stored === "dark" ? stored : null;
+  } catch {
+    return null;
+  }
+}
+
+function preferredTheme() {
+  if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
+    return "dark";
+  }
+  return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+}
 
 function parseColor(value) {
   const text = value.trim();
@@ -76,11 +100,19 @@ function contrastRatio(foreground, background) {
 
 export default function App() {
   const appRef = useRef(null);
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState(() => readStoredTheme() ?? preferredTheme());
   const [count, setCount] = useState(0);
   const [query, setQuery] = useState("");
   const [highlight, setHighlight] = useState(false);
   const [contrast, setContrast] = useState([]);
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+    } catch {
+      // Storage can be unavailable; the in-memory theme still works.
+    }
+  }, [theme]);
 
   useEffect(() => {
     const node = appRef.current;
@@ -91,7 +123,13 @@ export default function App() {
     const read = (name) => styles.getPropertyValue(name);
     setContrast(
       CONTRAST_PAIRS.map((pair) => {
-        const ratio = contrastRatio(read(pair.foreground), read(pair.background));
+        const ratio = pair.backgrounds.reduce((lowest, background) => {
+          const value = contrastRatio(read(pair.foreground), read(background));
+          if (value === null) {
+            return lowest;
+          }
+          return lowest === null ? value : Math.min(lowest, value);
+        }, null);
         return {
           ...pair,
           ratio,
